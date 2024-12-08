@@ -17,15 +17,15 @@ model User {
   id Int @id @default(autoincrement())
   name String
   email String @unique
-  otps OTP[]
+  otps OTP[] //vários otps
 }
 
 model OTP {
   id String @id
   code String
-  userId Int
-  expiresAt DateTime
+  userId Int //chave estrangeira
+  expiresAt DateTime  
   used Boolean @default(false)
 
-  user User @relation(fields: [userId], references:[id])  
+  user User @relation(fields: [userId], references:[id])  // um usuarios ter vários otps
 }
